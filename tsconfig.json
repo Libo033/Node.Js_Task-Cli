@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "module": "NodeNext",
+        "moduleResolution": "nodenext",
+        "target": "ESNext",
+        "sourceMap": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "outDir": "dist",
+        "esModuleInterop": true,
+    },
+    "include": [
+        "src/**/*",
+        "src/index.ts"
+    ],
+    "ts-node": {
+        "esm": true
+    }
+}
