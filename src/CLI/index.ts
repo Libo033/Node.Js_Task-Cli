@@ -1,4 +1,8 @@
 import Task from "../taskInfrastructure/index.js";
+import TaskCreator from "../taskInfrastructure/creator/index.js";
+import TaskUpdater from "../taskInfrastructure/updater/index.js";
+import TaskDeleter from "../taskInfrastructure/deleter/index.js";
+import TaskMarker from "../taskInfrastructure/marker/index.js";
 
 export class CLI {
   private options: string[] = process.argv.slice(2);
@@ -32,12 +36,12 @@ export class CLI {
 
       switch (this.options[0]) {
         case "add":
-          let createdId = await task.create(this.options[1]);
+          let createdId = TaskCreator.new(this.options[1]);
 
           console.log(`Task created successfully with ID ${createdId}`);
           break;
         case "update":
-          let updatedTask = task.update(
+          let updatedTask = TaskUpdater.update(
             parseInt(this.options[1]),
             this.options[2]
           );
@@ -45,17 +49,17 @@ export class CLI {
           console.log(`Task ${updatedTask} updated successfully`);
           break;
         case "delete":
-          let deletedId = task.delete(parseInt(this.options[1]));
+          let deletedId = TaskDeleter.delete(parseInt(this.options[1]));
 
           console.log(`Task ${deletedId} deleted successfully`);
           break;
         case "mark-in-progress":
-          let inProgressId = task.markInProgress(parseInt(this.options[1]));
+          let inProgressId = TaskMarker.inProgress(parseInt(this.options[1]));
 
           console.log(`Task ${inProgressId} marked in-progress`);
           break;
         case "mark-done":
-          let doneId = task.markDone(parseInt(this.options[1]));
+          let doneId = TaskMarker.done(parseInt(this.options[1]));
 
           console.log(`Task ${doneId} marked done`);
           break;
